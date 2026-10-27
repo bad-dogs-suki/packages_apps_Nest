@@ -480,7 +480,7 @@ public class NavbarButtonsViewController implements TaskbarControllers.LoggableT
                             && ((flags & FLAG_KEYGUARD_VISIBLE) == 0 || showingOnKeyguard);
                 }));
         // Hide back button in SUW if keyboard is showing (IME draws its own back).
-        if (mIsImeRenderingNavButtons) {
+        if (mIsImeRenderingNavButtons && !mContext.isThreeButtonNav()) {
             mPropertyHolders.add(new StatePropertyHolder(
                     mBackButtonAlpha.get(ALPHA_INDEX_SUW),
                     flags -> (flags & FLAG_IME_VISIBLE) == 0));

@@ -584,7 +584,9 @@ public class TaskbarActivityContext extends BaseTaskbarContext {
         mNavMode = getNavigationMode();
         mTaskbarUiState.setNavigationMode(mNavMode);
 
-        mImeDrawsImeNavBar = SettingsCache.INSTANCE.get(this).getIntValue(NAV_BAR_IME, 1) != 0;
+        mImeDrawsImeNavBar = isGestureNav()
+                && getBoolByName(IME_DRAWS_IME_NAV_BAR_RES_NAME, getResources(), false)
+                && SettingsCache.INSTANCE.get(this).getIntValue(NAV_BAR_IME, 1) != 0;
         if (mControllers != null) {
             mControllers.taskbarEduTooltipController.updateShouldShowEduOnAppLaunch();
         }
@@ -620,7 +622,9 @@ public class TaskbarActivityContext extends BaseTaskbarContext {
  *                     for the taskbar create/recreate process.
      */
     public void init(@NonNull TaskbarSharedState sharedState, boolean userUnlocked, int duration) {
-        mImeDrawsImeNavBar = SettingsCache.INSTANCE.get(this).getIntValue(NAV_BAR_IME, 1) != 0;
+        mImeDrawsImeNavBar = isGestureNav()
+                && getBoolByName(IME_DRAWS_IME_NAV_BAR_RES_NAME, getResources(), false)
+                && SettingsCache.INSTANCE.get(this).getIntValue(NAV_BAR_IME, 1) != 0;
         mLastRequestedNonFullscreenSize = getDefaultTaskbarWindowSize();
         mWindowLayoutParams = createAllWindowParams();
         mLastUpdatedLayoutParams = new WindowManager.LayoutParams();
@@ -967,7 +971,7 @@ public class TaskbarActivityContext extends BaseTaskbarContext {
     }
 
     public boolean imeDrawsImeNavBar() {
-        return mImeDrawsImeNavBar;
+        return isGestureNav() && mImeDrawsImeNavBar;
     }
 
     public int getCornerRadius() {
