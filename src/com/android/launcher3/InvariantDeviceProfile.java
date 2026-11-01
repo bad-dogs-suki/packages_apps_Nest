@@ -301,8 +301,7 @@ public class InvariantDeviceProfile {
                     onConfigChanged();
                 }
                 Trace.endSection();
-            } else if (WORKSPACE_ITEMS_LABEL_HIDDEN.getSharedPrefKey().equals(key)
-                    && com.android.systemui.shared.Flags.workspaceItemsLabelHidden()) {
+            } else if (WORKSPACE_ITEMS_LABEL_HIDDEN.getSharedPrefKey().equals(key)) {
                 onConfigChanged();
             } else if (ALLAPPS_THEMED_ICONS.getSharedPrefKey().equals(key) ||
                     SHOW_DESKTOP_LABELS.getSharedPrefKey().equals(key) ||
@@ -478,9 +477,7 @@ public class InvariantDeviceProfile {
             DeviceProfile.Builder builder = newDPBuilder(displayInfo)
                     .setIsMultiDisplay(deviceType == TYPE_MULTI_DISPLAY)
                     .setWindowBounds(bounds);
-            if (com.android.systemui.shared.Flags.workspaceItemsLabelHidden()) {
-                builder.setIsWorkspaceItemsLabelHidden(mPrefs.get(WORKSPACE_ITEMS_LABEL_HIDDEN));
-            }
+            builder.setIsWorkspaceItemsLabelHidden(!mPrefs.get(SHOW_DESKTOP_LABELS));
             localSupportedProfiles.add(builder.build());
 
             // Wallpaper size should be the maximum of the all possible sizes Launcher expects
