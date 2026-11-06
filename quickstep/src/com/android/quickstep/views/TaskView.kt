@@ -925,6 +925,11 @@ constructor(
                                 (taskData as? TaskData.Data)?.thumbnailData?.thumbnail == null
                             },
                         )
+                        val isAppLocked =
+                            state.tasks.any { taskData ->
+                                (taskData as? TaskData.Data)?.isAppLocked == true
+                            }
+                        it.updateAppLockedState(isAppLocked)
                     }
                 }
 
@@ -1150,6 +1155,14 @@ constructor(
         }
 
     fun containsMultipleTasks() = taskContainers.size > 1
+
+    /** Returns whether any task in this task view has app lock enabled. */
+    open fun isAppLocked(): Boolean =
+        if (::taskContainers.isInitialized) {
+            taskContainers.any { it.task.isAppLockEnabled }
+        } else {
+            false
+        }
 
     /**
      * Returns the TaskContainer corresponding to a given taskId, or null if the TaskView does not

@@ -155,7 +155,9 @@ public class TaskOverlayFactory {
         protected boolean isRealSnapshot() {
             if (mThumbnailData == null) return false;
 
-            return mThumbnailData.isRealSnapshot && !mTaskContainer.getTask().isLocked;
+            return mThumbnailData.isRealSnapshot
+                    && !mTaskContainer.getTask().isLocked
+                    && !mTaskContainer.getTask().isAppLockEnabled;
         }
 
         /**

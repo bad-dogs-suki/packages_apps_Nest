@@ -178,6 +178,7 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     private boolean mScreenshot;
     private boolean mClearAll;
     private boolean mLens;
+    private boolean mIsAppLocked = false;
 
     private SharedPreferences mPrefs;
     private boolean mPrefsRegistered;
@@ -286,7 +287,7 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
 
     @Override
     public void onClick(View view) {
-        if (mCallbacks == null) {
+        if (mCallbacks == null || !view.isEnabled()) {
             return;
         }
         final int id = view.getId();
@@ -305,6 +306,24 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
         } else if (id == R.id.action_lens) {
             VibratorWrapper.INSTANCE.get(getContext()).vibrate(VibratorWrapper.EFFECT_CLICK);
             mCallbacks.onLens();
+        }
+    }
+
+    /**
+     * Updates whether actions that capture task content (screenshot, lens) are disabled and greyed out
+     * because the central task's app is locked by AppLock.
+     */
+    public void updateAppLockedState(boolean isAppLocked) {
+        mIsAppLocked = isAppLocked;
+        View screenshotButton = findViewById(R.id.action_screenshot);
+        if (screenshotButton != null) {
+            screenshotButton.setEnabled(!isAppLocked);
+            screenshotButton.setAlpha(isAppLocked ? 0.35f : 1.0f);
+        }
+        View lensButton = findViewById(R.id.action_lens);
+        if (lensButton != null) {
+            lensButton.setEnabled(!isAppLocked);
+            lensButton.setAlpha(isAppLocked ? 0.35f : 1.0f);
         }
     }
 
@@ -359,6 +378,9 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
         }
         boolean isEnabled = (mDisabledFlags & ~DISABLED_ROTATED) == 0;
         LayoutUtils.setViewEnabled(this, isEnabled);
+        if (mIsAppLocked) {
+            updateAppLockedState(true);
+        }
     }
 
     /**

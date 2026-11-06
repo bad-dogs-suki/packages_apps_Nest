@@ -232,7 +232,7 @@ constructor(
                 thumbnailData = result.thumbnail,
                 backgroundColor = result.backgroundColor.removeAlpha(),
                 isLocked = result.isLocked,
-                isLiveTile = isLiveTile && !result.isMinimized,
+                isLiveTile = isLiveTile && !result.isMinimized && !result.isAppLocked,
                 remainingAppTimerDuration = result.remainingAppDuration,
                 isAppLocked = result.isAppLocked,
             )

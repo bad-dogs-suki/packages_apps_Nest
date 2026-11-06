@@ -2546,6 +2546,7 @@ public abstract class RecentsView<
     private void onReset() {
         setCurrentPage(0);
         LayoutUtils.setViewEnabled(mActionsView, true);
+        mActionsView.updateAppLockedState(false);
         if (mOrientationState.setGestureActive(false)) {
             updateOrientationHandler(/* forceRecreateDragLayerControllers = */ false);
         }
@@ -3395,6 +3396,9 @@ public abstract class RecentsView<
 
         boolean isCurrentDesktop = taskView instanceof DesktopTaskView;
         mActionsView.updateHiddenFlags(HIDDEN_DESKTOP, isCurrentDesktop);
+
+        boolean isAppLocked = taskView != null && taskView.isAppLocked();
+        mActionsView.updateAppLockedState(isAppLocked);
     }
 
     /**

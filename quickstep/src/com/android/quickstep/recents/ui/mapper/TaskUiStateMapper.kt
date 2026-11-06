@@ -73,6 +73,16 @@ object TaskUiStateMapper {
     fun toTaskThumbnailUiState(taskData: TaskData?): TaskThumbnailUiState =
         when {
             taskData !is TaskData.Data -> Uninitialized
+            taskData.isAppLocked -> {
+                val snapshot = taskData.thumbnailData?.thumbnail?.let {
+                    Snapshot(
+                        it,
+                        taskData.thumbnailData.rotation,
+                        taskData.backgroundColor,
+                    )
+                }
+                AppLocked(taskData.backgroundColor, snapshot)
+            }
             taskData.isLiveTile -> LiveTile
             taskData.isLocked -> {
                 Log.d(
@@ -85,7 +95,6 @@ object TaskUiStateMapper {
                     BackgroundOnly(taskData.backgroundColor)
                 }
             }
-            taskData.isAppLocked -> AppLocked(taskData.backgroundColor)
             taskData.thumbnailData?.thumbnail == null ->
                 BackgroundOnly(taskData.backgroundColor).also {
                     Log.d(

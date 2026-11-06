@@ -17,11 +17,14 @@
 package com.android.quickstep.task.thumbnail
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.Outline
 import android.graphics.Path
 import android.graphics.Rect
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.graphics.drawable.ShapeDrawable
 import android.util.AttributeSet
 import android.util.Log
@@ -140,7 +143,7 @@ class TaskThumbnailView : FrameLayout, ViewPool.Reusable {
             is LiveTile -> drawLiveWindow()
             is SnapshotSplash -> drawSnapshotSplash(state)
             is BackgroundOnly -> drawBackground(state.backgroundColor)
-            is AppLocked -> drawAppLocked(state.backgroundColor)
+            is AppLocked -> drawAppLocked(state)
         }
     }
 
@@ -173,6 +176,7 @@ class TaskThumbnailView : FrameLayout, ViewPool.Reusable {
     private fun resetViews() {
         liveTileView.isInvisible = true
         thumbnailView.isInvisible = true
+        thumbnailView.setRenderEffect(null)
         thumbnailView.setImageBitmap(null)
         splashBackground.alpha = 0f
         splashBackground.setBackgroundColor(Color.TRANSPARENT)
@@ -192,8 +196,18 @@ class TaskThumbnailView : FrameLayout, ViewPool.Reusable {
         liveTileView.isInvisible = false
     }
 
-    private fun drawAppLocked(@ColorInt background: Int) {
-        drawBackground(background)
+    private fun drawAppLocked(state: AppLocked) {
+        if (state.snapshot != null) {
+            drawSnapshot(state.snapshot)
+            thumbnailView.setRenderEffect(
+                RenderEffect.createBlurEffect(80f, 80f, Shader.TileMode.CLAMP)
+            )
+            splashBackground.setBackgroundColor(Color.argb(160, 0, 0, 0))
+            splashBackground.alpha = 1f
+        } else {
+            drawBackground(state.backgroundColor)
+        }
+        appLockIcon.imageTintList = ColorStateList.valueOf(Color.WHITE)
         appLockIcon.isInvisible = false
     }
 
@@ -214,7 +228,7 @@ class TaskThumbnailView : FrameLayout, ViewPool.Reusable {
     }
 
     fun setImageMatrix(matrix: Matrix) {
-        if (uiState is SnapshotSplash) {
+        if (uiState is SnapshotSplash || uiState is AppLocked) {
             thumbnailView.imageMatrix = matrix
         }
     }
