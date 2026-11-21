@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 Halcyon Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Folder titles -->
+
+    <!-- General -->
+    <string name="settings_title">主屏幕设置</string>
+
+    <!-- Categories -->
+    <string name="home_category_title">主屏幕</string>
+    <string name="home_category_summary">设定 Google Now 面板及更多</string>
+    <string name="icons_category_title">图标</string>
+    <string name="icons_category_summary">设定图标大小及更多</string>
+    <string name="app_drawer_category_title">应用抽屉</string>
+    <string name="app_drawer_category_summary">自定义你的应用抽屉</string>
+    <string name="recents_category_title">最近使用</string>
+    <string name="recents_category_summary">改善你的总览页面</string>
+    <string name="misc_category_title">杂项</string>
+    <string name="misc_category_summary">其它选项</string>
+    <string name="general_category_title">通用</string>
+    <string name="interface_category_title">界面</string>
+    <string name="search_bar_category_title">搜索栏</string>
+    <string name="actions_category_title">快速操作</string>
+
+    <!-- Developer options -->
+    <string name="dev_options_title">开发者选项</string>
+    <string name="dev_options_summary">启用一部分隐藏功能。风险自负。</string>
+
+    <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
+    <string name="title_show_google_app">滑动以显示 Google 应用程序</string>
+    <!-- Settings message explaining when the -1 screen is available on an LTR device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_left">当你从主页右滑时</string>
+    <!-- Settings message explaining when the -1 screen is available on an RTL device. [CHAR LIMIT=100] -->
+    <string name="msg_minus_one_on_right">当你从主页左滑时</string>
+
+    <!-- Suggestions -->
+    <string name="suggestion_pref_screen_title">建议</string>
+    <string name="suggestion_pref_screen_desc">适用于全部程序及主页的建议</string>
+
+    <!-- Restart launcher -->
+    <string name="pref_restart_title">重新启动</string>
+    <string name="pref_restart_summary">手动重新启动启动器以应用尚未应用的调整</string>
+    <string name="restarting_launcher">正在重新启动启动器……</string>
+    <string name="restarting_launcher_changes">正在重新启动启动器以应用更改……</string>
+    <string name="updating_launcher_components">正在重新启动启动器以更新启动器组建……</string>
+
+    <!-- DT2S -->
+    <string name="pref_sleep_gesture_title">双击睡眠</string>
+    <string name="pref_sleep_gesture_summary">双击桌面空白处以关闭屏幕</string>
+    <string name="pref_sleep_gesture_haptic_title">双击睡眠时震动</string>
+    <string name="pref_sleep_gesture_haptic_summary">为双击睡眠手势提供触觉反馈</string>
+
+    <!-- Edit workspace -->
+    <string name="settings_lock_layout_title">锁定布局</string>
+    <string name="settings_lock_layout_summary_on">主页上的图标和微件无法被添加、移除或移动</string>
+    <string name="settings_lock_layout_summary_off">主页上的图标和微件可以被添加、移除或移动</string>
+    <string name="settings_edit_widgets_error">无法向主页添加微件</string>
+
+    <!-- Hide labels -->
+    <string name="desktop_show_labels">桌面上的图标标签</string>
+    <string name="drawer_show_labels">应用抽屉中的图标标签</string>
+
+    <!-- All apps themed icons -->
+    <string name="pref_themed_icons_title">在应用抽屉中使用主题化图标</string>
+    <string name="pref_themed_icons_summary">将跟随主屏幕中的主题化图标</string>
+
+    <!-- Icon size -->
+    <string name="icon_size_title">图标大小</string>
+
+    <!-- Font size -->
+    <string name="font_size_title">字体大小</string>
+
+    <!-- Pause apps shortcut -->
+    <string name="pause">暂停</string>
+    <string name="pause_apps_dialog_title">要暂停 %1$s 吗？</string>
+    <string name="pause_apps_dialog_message">%1$s 的通知将被暂停</string>
+    <string name="paused_apps_dialog_title">应用已被暂停</string>
+    <string name="paused_apps_dialog_message">%1$s 已经由启动器直接暂停</string>
+    <string name="paused_apps_drop_target_label">暂停应用</string>
+
+    <!-- App label -->
+    <string name="icon_two_lines_title">使用双行图标标签</string>
+
+    <!-- Kill App recents action shortcut -->
+    <string name="recent_task_option_kill_app">强行停止</string>
+    <string name="recents_app_killed">应用已被强行停止</string>
+
+    <!-- Row Height -->
+    <string name="row_height_title">行高</string>
+
+    <!-- Hotseat Background -->
+    <string name="hotseat_bg_title">程序坞背景</string>
+    <string name="hotseat_bg_summary">为程序坞添加半透明背景</string>
+
+    <!-- Background opacity -->
+    <string name="background_opacity_title">背景不透明度</string>
+
+    <!-- Hotseat searchbar -->
+    <string name="label_search">搜索</string>
+    <string name="label_lens">Google 智能镜头</string>
+    <string name="label_voice_search">语音搜索</string>
+    <string name="dock_search_title">Google 搜索栏</string>
+    <string name="dock_search_summary">位于程序坞底部的搜索栏</string>
+    <string name="dock_theme_title">主题化图标</string>
+    <string name="dock_theme_summary">为搜索栏使用主题化图标</string>
+    <string name="search_radius_title">圆角半径</string>
+
+    <!-- Memory info -->
+    <string name="meminfo_text">%2$s 中的 %1$s 可用</string>
+    <string name="recents_meminfo_title">内存信息</string>
+
+    <!-- Recents icons -->
+    <string name="recents_screenshot_title">屏幕截图</string>
+    <string name="recents_clear_all_title">全部清除</string>
+    <string name="recents_lens_title">智能镜头</string>
+
+    <!-- Smartspace -->
+    <string name="smartspace_pref_title">资讯一览</string>
+    <string name="smartspace_pref_summary">在主屏幕顶部显示资讯一览</string>
+</resources>
